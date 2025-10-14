@@ -1,5 +1,4 @@
 ﻿using ChallengeCompraGamer_Backend.DataAccess.Entities;
-using ChallengeCompraGamer_Backend.Models.DTO.Response;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 

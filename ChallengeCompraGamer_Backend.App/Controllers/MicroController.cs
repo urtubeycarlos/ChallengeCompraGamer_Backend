@@ -1,5 +1,4 @@
-﻿using ChallengeCompraGamer_Backend.App.Commands.Micro.CreateMicro;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChallengeCompraGamer_Backend.Controllers
