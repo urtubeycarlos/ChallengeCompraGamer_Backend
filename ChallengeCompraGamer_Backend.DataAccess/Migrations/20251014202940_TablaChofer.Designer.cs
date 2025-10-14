@@ -4,6 +4,7 @@ using ChallengeCompraGamer_Backend.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChallengeCompraGamer_Backend.DataAccess.Migrations
 {
     [DbContext(typeof(ChallengeCompraGamerContext))]
-    partial class ChallengeCompraGamerContextModelSnapshot : ModelSnapshot
+    [Migration("20251014202940_TablaChofer")]
+    partial class TablaChofer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,51 +74,6 @@ namespace ChallengeCompraGamer_Backend.DataAccess.Migrations
                     b.ToTable("chofer", (string)null);
                 });
 
-            modelBuilder.Entity("ChallengeCompraGamer_Backend.DataAccess.Entities.Chico", b =>
-                {
-                    b.Property<string>("DNI")
-                        .HasMaxLength(16)
-                        .HasColumnType("varchar(16)")
-                        .HasColumnName("dni");
-
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)")
-                        .HasColumnName("apellido");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime(3)")
-                        .HasColumnName("created_at")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP(3)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)")
-                        .HasColumnName("nombre");
-
-                    b.Property<string>("PatenteMicro")
-                        .HasMaxLength(16)
-                        .HasColumnType("varchar(16)")
-                        .HasColumnName("patente_micro");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime(3)")
-                        .HasColumnName("updated_at")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP(3)");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("UpdatedAt"));
-
-                    b.HasKey("DNI");
-
-                    b.HasIndex("PatenteMicro");
-
-                    b.ToTable("chico", (string)null);
-                });
-
             modelBuilder.Entity("ChallengeCompraGamer_Backend.DataAccess.Entities.Micro", b =>
                 {
                     b.Property<string>("Patente")
@@ -146,22 +104,6 @@ namespace ChallengeCompraGamer_Backend.DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("micro", (string)null);
-                });
-
-            modelBuilder.Entity("ChallengeCompraGamer_Backend.DataAccess.Entities.Chico", b =>
-                {
-                    b.HasOne("ChallengeCompraGamer_Backend.DataAccess.Entities.Micro", "Micro")
-                        .WithMany("Chicos")
-                        .HasForeignKey("PatenteMicro")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .HasConstraintName("FK_Chico_Micro");
-
-                    b.Navigation("Micro");
-                });
-
-            modelBuilder.Entity("ChallengeCompraGamer_Backend.DataAccess.Entities.Micro", b =>
-                {
-                    b.Navigation("Chicos");
                 });
 
             modelBuilder.Entity("ChallengeCompraGamer_Backend.DataAccess.Entities.Micro", b =>

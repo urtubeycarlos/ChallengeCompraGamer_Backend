@@ -8,5 +8,9 @@
 
         // Relación con Chico
         public ICollection<Chico> Chicos { get; set; } = new List<Chico>();
+
+        // Relación con Chofer
+        public string? ChoferDNI { get; set; }
+        public Chofer? Chofer { get; set; }
     }
 }

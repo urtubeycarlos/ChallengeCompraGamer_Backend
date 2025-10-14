@@ -1,6 +1,6 @@
-﻿namespace ChallengeCompraGamer_Backend.DataAccess.Entities
+﻿namespace ChallengeCompraGamer_Backend.Models.Chofer.GetByDNI
 {
-    public class Chofer
+    public class GetChoferByDniResponseDTO
     {
         public string DNI { get; set; }
         public string Nombre { get; set; }
@@ -9,8 +9,5 @@
         public int Telefono { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
-        // Relación con Micro
-        public Micro? Micro { get; set; }
     }
 }
