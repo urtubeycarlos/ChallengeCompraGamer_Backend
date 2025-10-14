@@ -1,0 +1,61 @@
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code workspace settings
+.vscode/
+
+# Rider IDE files
+.idea/
+
+# DotNet Core publish output
+publish/
+
+# Logs
+*.log
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+
+# Packages folder (if present)
+packages/
+
+# Docker files generated during build
+Dockerfile.*
+
+# User secrets (if usas)
+secrets.json
+
+# ASP.NET Core environment variable files
+.env
+
+# Database files, if local dev (ejemplo SQLite)
+*.db
+
+# Publish output folder (opcional)
+out/
+
+# Others
+*.pidb
+*.mdb
+*.pdb
+*.cache
+*.config
+
+# MacOS files
+.DS_Store
+
+# Windows thumbnail cache files
+Thumbs.db
+
