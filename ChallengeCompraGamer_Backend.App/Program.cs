@@ -49,6 +49,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddTransient<MicroService>();
+builder.Services.AddTransient<ChoferService>();
 
 WebApplication app = builder.Build();
 
