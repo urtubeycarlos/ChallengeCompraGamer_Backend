@@ -1,7 +1,10 @@
 using ChallengeCompraGamer_Backend.App;
+using ChallengeCompraGamer_Backend.App.Middlewares;
 using ChallengeCompraGamer_Backend.DataAccess.Context;
 using ChallengeCompraGamer_Backend.Models.Maps;
+using ChallengeCompraGamer_Backend.Services;
 using FluentValidation.AspNetCore;
+using MediatR;
 using MediatR.Extensions.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,15 +12,17 @@ using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services
-    .AddControllers()
+builder.Services.AddControllers()
     .AddFluentValidation(fv =>
     {
         fv.RegisterValidatorsFromAssemblyContaining<Program>();
         fv.DisableDataAnnotationsValidation = true;
     });
 
+LoggerConfig.Add(builder);
+
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -56,4 +61,5 @@ app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.Run();
