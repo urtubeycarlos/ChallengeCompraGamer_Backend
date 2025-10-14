@@ -14,14 +14,14 @@ namespace ChallengeCompraGamer_Backend.DataAccess.Context
         }
 
         public DbSet<Micro> Micros { get; set; }
+        public DbSet<Chofer> Choferes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new MicroEntityConfiguration());
-            // modelBuilder.ApplyConfiguration(new ChicoEntityConfiguration());
-            // modelBuilder.ApplyConfiguration(new ChoferEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ChoferEntityConfiguration());
         }
     }
 }
