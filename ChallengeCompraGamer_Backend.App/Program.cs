@@ -8,8 +8,6 @@ using MediatR;
 using MediatR.Extensions.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
-
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers()
@@ -37,7 +35,6 @@ builder.Services.AddDbContext<ChallengeCompraGamerContext>(options =>
             b => b.MigrationsAssembly("ChallengeCompraGamer_Backend.DataAccess")
        ));
 
-LoggerConfig.Add(builder);
 
 builder.Services.AddAutoMapper(typeof(MappingAssemblyMarker).Assembly);
 
@@ -51,7 +48,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-
+builder.Services.AddTransient<MicroService>();
 
 WebApplication app = builder.Build();
 

@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Micro\" />
     <Folder Include="Commands\Chofer\" />
     <Folder Include="Commands\Chico\" />
   </ItemGroup>
