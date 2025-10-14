@@ -1,8 +1,6 @@
-﻿using System.Text;
-using ChallengeCompraGamer_Backend.DataAccess.Configurations;
+﻿using ChallengeCompraGamer_Backend.DataAccess.Configurations;
 using ChallengeCompraGamer_Backend.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ChallengeCompraGamer_Backend.DataAccess.Context
 {
@@ -14,6 +12,7 @@ namespace ChallengeCompraGamer_Backend.DataAccess.Context
         }
 
         public DbSet<Micro> Micros { get; set; }
+        public DbSet<Chico> Chicos { get; set; }
         public DbSet<Chofer> Choferes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,6 +21,7 @@ namespace ChallengeCompraGamer_Backend.DataAccess.Context
 
             modelBuilder.ApplyConfiguration(new MicroEntityConfiguration());
             modelBuilder.ApplyConfiguration(new ChoferEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new ChicoEntityConfiguration());
         }
     }
 }

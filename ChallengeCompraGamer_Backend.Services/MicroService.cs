@@ -2,7 +2,6 @@
 using ChallengeCompraGamer_Backend.DataAccess.Entities;
 using ChallengeCompraGamer_Backend.Models.Micro;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ChallengeCompraGamer_Backend.Services
 {
