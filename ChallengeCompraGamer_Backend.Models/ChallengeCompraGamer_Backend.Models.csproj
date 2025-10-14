@@ -5,7 +5,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Micro\" />
     <Folder Include="Chofer\" />
     <Folder Include="Chico\" />
   </ItemGroup>
