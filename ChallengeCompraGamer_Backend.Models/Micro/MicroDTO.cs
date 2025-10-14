@@ -1,6 +1,6 @@
-﻿namespace ChallengeCompraGamer_Backend.DataAccess.Entities
+﻿namespace ChallengeCompraGamer_Backend.Models.Micro
 {
-    public class Micro
+    public class MicroDTO
     {
         public string Patente { get; set; }
         public DateTime CreatedAt { get; set; }

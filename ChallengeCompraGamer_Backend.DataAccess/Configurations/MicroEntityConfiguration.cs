@@ -8,7 +8,26 @@ namespace ChallengeCompraGamer_Backend.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Micro> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("micro");
+            builder.HasKey(m => m.Patente);
+            
+            builder.Property(m => m.Patente)
+                    .HasColumnName("patente")
+                    .IsRequired()
+                    .HasMaxLength(16);
+
+            builder.Property(m => m.CreatedAt)
+                    .HasColumnName("created_at")
+                    .HasColumnType("datetime(3)") // precisión hasta milisegundos
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(3)") // incluye milisegundos
+                    .IsRequired();
+
+            builder.Property(m => m.UpdatedAt)
+                    .HasColumnName("updated_at")
+                    .HasColumnType("datetime(3)") // precisión hasta milisegundos
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(3)")
+                    .ValueGeneratedOnAddOrUpdate()
+                    .Metadata.SetAfterSaveBehavior(Microsoft.EntityFrameworkCore.Metadata.PropertySaveBehavior.Ignore);
         }
     }
 }

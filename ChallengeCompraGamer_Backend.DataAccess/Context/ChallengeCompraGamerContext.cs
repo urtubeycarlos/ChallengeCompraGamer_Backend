@@ -13,13 +13,15 @@ namespace ChallengeCompraGamer_Backend.DataAccess.Context
         {
         }
 
+        public DbSet<Micro> Micros { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.ApplyConfiguration(new MicroEntityConfiguration());
             // modelBuilder.ApplyConfiguration(new ChicoEntityConfiguration());
             // modelBuilder.ApplyConfiguration(new ChoferEntityConfiguration());
-            // modelBuilder.ApplyConfiguration(new MicroEntityConfiguration());
         }
     }
 }
