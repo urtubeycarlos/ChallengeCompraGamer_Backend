@@ -49,6 +49,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddTransient<MicroService>();
+builder.Services.AddTransient<ChicoService>();
 
 WebApplication app = builder.Build();
 

@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Serilog;
 using Serilog.Sinks.Elasticsearch;
-using Serilog;
 
 namespace ChallengeCompraGamer_Backend.App
 {
