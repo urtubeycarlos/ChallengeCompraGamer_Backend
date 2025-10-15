@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ChallengeCompraGamer_Backend.App.Commands.Micro.GetMicros
 {
-    public class GetMicrosCommandHandler : IRequestHandler<GetMicrosCommandRequest, Result<IEnumerable<GetAllMicrosResponseDTO>>>
+    public class GetMicrosCommandHandler : IRequestHandler<GetMicrosCommand, Result<IEnumerable<GetAllMicrosResponseDTO>>>
     {
         private readonly MicroService _service;
         private readonly ILogger<GetMicrosCommandHandler> _logger;
@@ -17,7 +17,7 @@ namespace ChallengeCompraGamer_Backend.App.Commands.Micro.GetMicros
             _logger = logger;
         }
 
-        public async Task<Result<IEnumerable<GetAllMicrosResponseDTO>>> Handle(GetMicrosCommandRequest command, CancellationToken cancellationToken)
+        public async Task<Result<IEnumerable<GetAllMicrosResponseDTO>>> Handle(GetMicrosCommand command, CancellationToken cancellationToken)
         {
             try
             {
