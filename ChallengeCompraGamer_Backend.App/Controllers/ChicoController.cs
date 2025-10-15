@@ -1,4 +1,5 @@
-﻿using ChallengeCompraGamer_Backend.App.Commands.Chico.CreateChico;
+﻿using System.Net;
+using ChallengeCompraGamer_Backend.App.Commands.Chico.CreateChico;
 using ChallengeCompraGamer_Backend.App.Commands.Chico.DeleteChico;
 using ChallengeCompraGamer_Backend.App.Commands.Chico.GetChico;
 using ChallengeCompraGamer_Backend.App.Commands.Chico.GetChicos;
@@ -60,7 +61,7 @@ namespace ChallengeCompraGamer_Backend.Controllers
 
             if (result.IsSuccess)
             {
-                return Ok(result.Data);
+                return StatusCode((int)HttpStatusCode.Created, result.Data);
             }
             else
             {

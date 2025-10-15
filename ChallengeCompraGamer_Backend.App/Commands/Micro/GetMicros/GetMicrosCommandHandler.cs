@@ -1,13 +1,12 @@
 ﻿using System.Net;
 using ChallengeCompraGamer_Backend.Models;
-using ChallengeCompraGamer_Backend.Models.Micro;
+using ChallengeCompraGamer_Backend.Models.Micro.GetAll;
 using ChallengeCompraGamer_Backend.Services;
 using MediatR;
-using Serilog;
 
 namespace ChallengeCompraGamer_Backend.App.Commands.Micro.GetMicros
 {
-    public class GetMicrosCommandHandler : IRequestHandler<GetMicrosCommandRequest, Result<IEnumerable<MicroDTO>>>
+    public class GetMicrosCommandHandler : IRequestHandler<GetMicrosCommand, Result<IEnumerable<GetAllMicrosResponseDTO>>>
     {
         private readonly MicroService _service;
         private readonly ILogger<GetMicrosCommandHandler> _logger;
@@ -18,17 +17,17 @@ namespace ChallengeCompraGamer_Backend.App.Commands.Micro.GetMicros
             _logger = logger;
         }
 
-        public async Task<Result<IEnumerable<MicroDTO>>> Handle(GetMicrosCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result<IEnumerable<GetAllMicrosResponseDTO>>> Handle(GetMicrosCommand command, CancellationToken cancellationToken)
         {
             try
             {
-                IEnumerable<MicroDTO> micros = await _service.Get();
-                return Result<IEnumerable<MicroDTO>>.Success(micros);
+                IEnumerable<GetAllMicrosResponseDTO> micros = await _service.Get(command.IncluirAsignados, command.IncluirCompletos);
+                return Result<IEnumerable<GetAllMicrosResponseDTO>>.Success(micros);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error retrieving micros");
-                return Result<IEnumerable<MicroDTO>>.Failure("Error retrieving micros", HttpStatusCode.InternalServerError);
+                return Result<IEnumerable<GetAllMicrosResponseDTO>>.Failure("Error retrieving micros", HttpStatusCode.InternalServerError);
             }
         }
     }

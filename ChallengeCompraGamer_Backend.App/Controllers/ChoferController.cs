@@ -1,4 +1,5 @@
-﻿using ChallengeCompraGamer_Backend.App.Commands.Chofer.CreateChofer;
+﻿using System.Net;
+using ChallengeCompraGamer_Backend.App.Commands.Chofer.CreateChofer;
 using ChallengeCompraGamer_Backend.App.Commands.Chofer.DeleteChofer;
 using ChallengeCompraGamer_Backend.App.Commands.Chofer.GetChofer;
 using ChallengeCompraGamer_Backend.App.Commands.Chofer.GetChoferes;
@@ -60,7 +61,7 @@ namespace ChallengeCompraGamer_Backend.Controllers
             var result = await _mediator.Send(command);
             if (result.IsSuccess)
             {
-                return Created($"/Chofer/{result.Data.DNI}", result.Data);
+                return StatusCode((int)HttpStatusCode.Created, result.Data);
             }
             else
             {

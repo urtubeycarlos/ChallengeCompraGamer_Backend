@@ -16,6 +16,24 @@ namespace ChallengeCompraGamer_Backend.DataAccess.Configurations
                     .IsRequired()
                     .HasMaxLength(16);
 
+            builder.Property(m => m.Marca)
+                    .HasColumnName("marca")
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+            builder.Property(m => m.Modelo)
+                    .HasColumnName("modelo")
+                    .IsRequired()
+                    .HasMaxLength(64);
+
+            builder.Property(m => m.CantidadAsientos)
+                    .HasColumnName("cantidad_asientos")
+                    .IsRequired();
+
+            builder.Property(m => m.ChoferDNI)
+                    .HasColumnName("chofer_dni")
+                    .HasMaxLength(16);
+
             builder.Property(m => m.CreatedAt)
                     .HasColumnName("created_at")
                     .HasColumnType("datetime(3)") // precisión hasta milisegundos

@@ -1,10 +1,4 @@
-﻿using System.Threading;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 using ChallengeCompraGamer_Backend.Models.Chofer.Update;
 using ChallengeCompraGamer_Backend.Models;
 using ChallengeCompraGamer_Backend.Services;

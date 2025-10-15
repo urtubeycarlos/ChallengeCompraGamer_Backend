@@ -1,11 +1,11 @@
 ﻿using ChallengeCompraGamer_Backend.Models;
-using ChallengeCompraGamer_Backend.Models.Micro;
+using ChallengeCompraGamer_Backend.Models.Micro.GetByPatente;
 using ChallengeCompraGamer_Backend.Services;
 using MediatR;
 
 namespace ChallengeCompraGamer_Backend.App.Commands.Micro.GetMicro
 {
-    public class GetMicroCommandHandler : IRequestHandler<GetMicroCommandRequest, Result<MicroDTO>>
+    public class GetMicroCommandHandler : IRequestHandler<GetMicroCommand, Result<GetMicroByPatenteResponseDTO>>
     {
         private readonly MicroService _service;
         private readonly ILogger<GetMicroCommandHandler> _logger;
@@ -16,22 +16,22 @@ namespace ChallengeCompraGamer_Backend.App.Commands.Micro.GetMicro
             _logger = logger;
         }
 
-        public async Task<Result<MicroDTO>> Handle(GetMicroCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Result<GetMicroByPatenteResponseDTO>> Handle(GetMicroCommand command, CancellationToken cancellationToken)
         {
             try
             {
-                MicroDTO micro = await _service.Get(request.Patente);
-                return Result<MicroDTO>.Success(micro);
+                GetMicroByPatenteResponseDTO micro = await _service.Get(command.Patente);
+                return Result<GetMicroByPatenteResponseDTO>.Success(micro);
             }
             catch (KeyNotFoundException ex)
             {
-                _logger.LogWarning(ex, "Micro not found: {Patente}", request.Patente);
-                return Result<MicroDTO>.Failure("Micro not found", System.Net.HttpStatusCode.NotFound);
+                _logger.LogWarning(ex, "Micro not found: {Patente}", command.Patente);
+                return Result<GetMicroByPatenteResponseDTO>.Failure("Micro not found", System.Net.HttpStatusCode.NotFound);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error retrieving micro: {Patente}", request.Patente);
-                return Result<MicroDTO>.Failure("Error retrieving micro", System.Net.HttpStatusCode.InternalServerError);
+                _logger.LogError(ex, "Error retrieving micro: {Patente}", command.Patente);
+                return Result<GetMicroByPatenteResponseDTO>.Failure("Error retrieving micro", System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }

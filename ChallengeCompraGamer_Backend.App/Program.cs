@@ -35,6 +35,8 @@ builder.Services.AddDbContext<ChallengeCompraGamerContext>(options =>
             b => b.MigrationsAssembly("ChallengeCompraGamer_Backend.DataAccess")
        ));
 
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<ChallengeCompraGamerContext>();
 
 builder.Services.AddAutoMapper(typeof(MappingAssemblyMarker).Assembly);
 
@@ -60,5 +62,6 @@ app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHealthChecks("/health");
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.Run();
