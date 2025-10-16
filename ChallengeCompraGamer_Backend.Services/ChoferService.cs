@@ -23,7 +23,9 @@ namespace ChallengeCompraGamer_Backend.Services
 
         public async Task<IEnumerable<GetAllChoferesResponseDTO>> GetAll()
         {
-            IEnumerable<Chofer> choferes = await _context.Choferes.ToListAsync();
+            IEnumerable<Chofer> choferes = await _context.Choferes
+                                                            .Include(c => c.Micro)
+                                                            .ToListAsync();
             return _mapper.Map<IEnumerable<GetAllChoferesResponseDTO>>(choferes);
         }
 
