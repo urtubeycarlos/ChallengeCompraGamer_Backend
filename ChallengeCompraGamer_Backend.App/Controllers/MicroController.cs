@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ChallengeCompraGamer_Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class MicroController : ControllerBase
     {
         private readonly IMediator _mediator;
