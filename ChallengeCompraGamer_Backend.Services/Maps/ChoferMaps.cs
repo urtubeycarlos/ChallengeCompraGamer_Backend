@@ -12,8 +12,11 @@ namespace ChallengeCompraGamer_Backend.Services.Maps
     {
         public ChoferMaps()
         {
-            CreateMap<Chofer, GetAllChoferesResponseDTO>();
-            CreateMap<Chofer, GetChoferByDniResponseDTO>();
+            CreateMap<Chofer, GetAllChoferesResponseDTO>()
+                .ForMember(dest => dest.EstaAsignado, opt => opt.MapFrom(src => src.Micro != null));
+
+            CreateMap<Chofer, GetChoferByDniResponseDTO>()
+                .ForMember(dest => dest.EstaAsignado, opt => opt.MapFrom(src => src.Micro != null));
 
             CreateMap<CreateChoferRequestDTO, Chofer>();
             CreateMap<Chofer, CreateChoferResponseDTO>();
