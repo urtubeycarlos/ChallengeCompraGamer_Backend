@@ -12,8 +12,11 @@ namespace ChallengeCompraGamer_Backend.Services.Maps
     {
         public ChicoMaps()
         {
-            CreateMap<Chico, GetAllChicosResponseDTO>();
-            CreateMap<Chico, GetChicoByDniResponseDTO>();
+            CreateMap<Chico, GetAllChicosResponseDTO>()
+                .ForMember(dest => dest.EstaAsignado, opt => opt.MapFrom(src => src.Micro != null));
+
+            CreateMap<Chico, GetChicoByDniResponseDTO>()
+                .ForMember(dest => dest.EstaAsignado, opt => opt.MapFrom(src => src.Micro != null));
 
             CreateMap<CreateChicoRequestDTO, Chico>();
             CreateMap<Chico, CreateChicoResponseDTO>();
