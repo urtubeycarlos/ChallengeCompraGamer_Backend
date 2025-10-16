@@ -23,7 +23,7 @@ namespace ChallengeCompraGamer_Backend.Services
 
         public async Task<IEnumerable<GetAllChicosResponseDTO>> GetAll()
         {
-            IEnumerable<Chico> chicos = await _context.Chicos.ToListAsync();
+            IEnumerable<Chico> chicos = await _context.Chicos
             return chicos.Select(_mapper.Map<GetAllChicosResponseDTO>);
         }
 
