@@ -36,7 +36,7 @@ Controller → MediatR → Handler → Service → EF Core → Entity Repository
 
 - [.NET SDK 8](https://dotnet.microsoft.com/en-us/download)
 - [Visual Studio 2022+](https://visualstudio.microsoft.com/)
-- [Docker](https://www.docker.com/) + [Docker Compose](https://docs.docker.com/compose/)
+- [Docker Desktop](https://docs.docker.com/desktop)
 
 ---
 
