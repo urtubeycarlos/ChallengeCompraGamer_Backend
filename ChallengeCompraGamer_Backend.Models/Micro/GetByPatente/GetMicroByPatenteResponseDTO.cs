@@ -11,7 +11,8 @@ namespace ChallengeCompraGamer_Backend.Models.Micro.GetByPatente
         public int CantidadAsientos { get; set; }
         public int CantidadAsientosOcupados { get; set; }
         public bool EstaCompleto { get; set; }
-        public bool EstaAsignado { get; set; }
+        public bool TieneChofer { get; set; }
+        public bool TieneChicos { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public ICollection<GetAllChicosResponseDTO> Chicos { get; set; } = new List<GetAllChicosResponseDTO>();

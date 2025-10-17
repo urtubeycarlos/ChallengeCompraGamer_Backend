@@ -15,16 +15,18 @@ namespace ChallengeCompraGamer_Backend.Services.Maps
         public MicroMaps()
         {
             CreateMap<CreateMicroRequestDTO, Micro>();
-            
+
             CreateMap<Micro, GetAllMicrosResponseDTO>()
                 .ForMember(dest => dest.CantidadAsientosOcupados, opt => opt.MapFrom(src => src.Chicos.Count()))
                 .ForMember(dest => dest.EstaCompleto, opt => opt.MapFrom(src => src.Chicos.Count() >= src.CantidadAsientos))
-                .ForMember(dest => dest.EstaAsignado, opt => opt.MapFrom(src => src.Chofer != null));
+                .ForMember(dest => dest.TieneChofer, opt => opt.MapFrom(src => src.Chofer != null))
+                .ForMember(dest => dest.TieneChicos, opt => opt.MapFrom(src => src.Chicos != null && src.Chicos.Any()));
 
             CreateMap<Micro, GetMicroByPatenteResponseDTO>()
                 .ForMember(dest => dest.CantidadAsientosOcupados, opt => opt.MapFrom(src => src.Chicos.Count()))
                 .ForMember(dest => dest.EstaCompleto, opt => opt.MapFrom(src => src.Chicos.Count() >= src.CantidadAsientos))
-                .ForMember(dest => dest.EstaAsignado, opt => opt.MapFrom(src => src.Chofer != null));
+                .ForMember(dest => dest.TieneChofer, opt => opt.MapFrom(src => src.Chofer != null))
+                .ForMember(dest => dest.TieneChicos, opt => opt.MapFrom(src => src.Chicos != null && src.Chicos.Any()));
 
             CreateMap<Micro, CreateMicroResponseDTO>();
 
@@ -36,12 +38,14 @@ namespace ChallengeCompraGamer_Backend.Services.Maps
             CreateMap<Micro, AssignChicosToMicroResponseDTO>()
                 .ForMember(dest => dest.CantidadAsientosOcupados, opt => opt.MapFrom(src => src.Chicos.Count()))
                 .ForMember(dest => dest.EstaCompleto, opt => opt.MapFrom(src => src.Chicos.Count() >= src.CantidadAsientos))
-                .ForMember(dest => dest.EstaAsignado, opt => opt.MapFrom(src => src.Chofer != null));
+                .ForMember(dest => dest.TieneChofer, opt => opt.MapFrom(src => src.Chofer != null))
+                .ForMember(dest => dest.TieneChicos, opt => opt.MapFrom(src => src.Chicos != null && src.Chicos.Any()));
 
             CreateMap<Micro, AssignChoferToMicroResponseDTO>()
                 .ForMember(dest => dest.CantidadAsientosOcupados, opt => opt.MapFrom(src => src.Chicos.Count()))
                 .ForMember(dest => dest.EstaCompleto, opt => opt.MapFrom(src => src.Chicos.Count() >= src.CantidadAsientos))
-                .ForMember(dest => dest.EstaAsignado, opt => opt.MapFrom(src => src.Chofer != null));
+                .ForMember(dest => dest.TieneChofer, opt => opt.MapFrom(src => src.Chofer != null))
+                .ForMember(dest => dest.TieneChicos, opt => opt.MapFrom(src => src.Chicos != null && src.Chicos.Any()));
         }
     }
 }
