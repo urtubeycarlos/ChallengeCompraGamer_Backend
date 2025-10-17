@@ -25,13 +25,13 @@ namespace ChallengeCompraGamer_Backend.App.Commands.Chico.CreateChico
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogWarning(ex, "Chico already exists: {DNI}", command.Body.DNI);
-                return Result<CreateChicoResponseDTO>.Failure("Chico already exists", System.Net.HttpStatusCode.Conflict);
+                _logger.LogWarning(ex, "Chico con DNI {DNI} ya existe", command.Body.DNI);
+                return Result<CreateChicoResponseDTO>.Failure($"Chico con DNI {command.Body.DNI} ya existe", System.Net.HttpStatusCode.Conflict);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error creating chico: {DNI}", command.Body.DNI);
-                return Result<CreateChicoResponseDTO>.Failure("Error creating chico", System.Net.HttpStatusCode.InternalServerError);
+                _logger.LogError(ex, "Error al crear chico con DNI: {DNI}", command.Body.DNI);
+                return Result<CreateChicoResponseDTO>.Failure($"Error al crear chico con DNI: {command.Body.DNI}", System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }

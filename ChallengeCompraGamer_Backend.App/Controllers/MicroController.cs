@@ -12,6 +12,7 @@ using ChallengeCompraGamer_Backend.Models.Micro.Create;
 using ChallengeCompraGamer_Backend.Models.Micro.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ChallengeCompraGamer_Backend.Controllers
 {

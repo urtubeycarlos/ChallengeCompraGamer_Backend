@@ -5,7 +5,10 @@ using ChallengeCompraGamer_Backend.App.Commands.Chico.GetChico;
 using ChallengeCompraGamer_Backend.App.Commands.Chico.GetChicos;
 using ChallengeCompraGamer_Backend.App.Commands.Chico.UpdateChico;
 using ChallengeCompraGamer_Backend.Models.Chico.Create;
+using ChallengeCompraGamer_Backend.Models.Chico.Delete;
+using ChallengeCompraGamer_Backend.Models.Chico.GetByDNI;
 using ChallengeCompraGamer_Backend.Models.Chico.Update;
+using ChallengeCompraGamer_Backend.Models.Chofer.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +26,8 @@ namespace ChallengeCompraGamer_Backend.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(GetAllChoferesResponseDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get()
         {
             var result = await _mediator.Send(new GetChicosCommand());
@@ -38,6 +43,9 @@ namespace ChallengeCompraGamer_Backend.Controllers
         }
 
         [HttpGet("{dni}")]
+        [ProducesResponseType(typeof(GetChicoByDniResponseDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get(string dni)
         {
             GetChicoByDniCommand query = new GetChicoByDniCommand(dni);
@@ -54,6 +62,10 @@ namespace ChallengeCompraGamer_Backend.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(CreateChicoResponseDTO), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(CreateChicoRequestDTO request)
         {
             CreateChicoCommand command = new CreateChicoCommand() { Body = request };
@@ -70,6 +82,8 @@ namespace ChallengeCompraGamer_Backend.Controllers
         }
 
         [HttpPatch("{dni}")]
+        [ProducesResponseType(typeof(UpdateChicoResponseDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Patch(string dni, UpdateChicoRequestDTO body)
         {
             UpdateChicoCommand command = new UpdateChicoCommand() { DNI = dni, Body = body };
@@ -86,6 +100,9 @@ namespace ChallengeCompraGamer_Backend.Controllers
         }
 
         [HttpDelete("{dni}")]
+        [ProducesResponseType(typeof(DeleteChicoResponseDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(string dni)
         {
             DeleteChicoCommand query = new DeleteChicoCommand(dni);
