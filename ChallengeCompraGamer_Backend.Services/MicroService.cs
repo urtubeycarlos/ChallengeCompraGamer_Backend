@@ -67,10 +67,18 @@ namespace ChallengeCompraGamer_Backend.Services
 
         public async Task<UpdateMicroResponseDTO> Update(string patente, UpdateMicroRequestDTO request)
         {
-            Micro micro = await _context.Micros.FindAsync(patente);
+            Micro micro = await _context.Micros
+                                            .Include(m => m.Chicos)
+                                            .FirstOrDefaultAsync(m => m.Patente == patente);
             if (micro == null)
             {
-                throw new KeyNotFoundException($"Micro with patente {patente} not found.");
+                throw new KeyNotFoundException($"No se encontró micro con patente {patente}.");
+            }
+
+            int cantidadChicos = micro.Chicos?.Count ?? 0;
+            if (cantidadChicos > request.CantidadAsientos)
+            {
+                throw new InvalidOperationException($"No se puede poner menos asientos que la cantidad de chicos ya asignados para el micro con patente {patente}");
             }
 
             _mapper.Map(request, micro);
