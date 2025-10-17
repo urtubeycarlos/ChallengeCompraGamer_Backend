@@ -407,6 +407,7 @@ Esta sección formaliza las decisiones técnicas que estructuran el proyecto.
 - Acceso directo a EF desde los handlers
 - Validaciones manuales en los servicios pudiendo realizarse en FluentValidation
 
+---
 
 ## 📝 TODO
 
