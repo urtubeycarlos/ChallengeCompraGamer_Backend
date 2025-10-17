@@ -1,0 +1,9 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_compra_gamer
+    ports:
+      - "8080:8080"
+    restart: always
