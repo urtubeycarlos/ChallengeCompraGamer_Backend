@@ -33,7 +33,7 @@ namespace ChallengeCompraGamer_Backend.Services
 
             return micros
                     .Select(m => _mapper.Map<GetAllMicrosResponseDTO>(m))
-                    .Where(m => incluirAsignados || !m.EstaAsignado)
+                    .Where(m => incluirAsignados || !m.TieneChofer)
                     .Where(m => incluirCompletos || !m.EstaCompleto)
                     .ToList();
         }
