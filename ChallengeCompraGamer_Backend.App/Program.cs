@@ -62,6 +62,6 @@ app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-app.MapHealthChecks("/health");
+app.MapHealthChecks("/api/health");
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.Run();
